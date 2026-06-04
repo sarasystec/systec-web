@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mentoría 1:1 en Notion — SysteC Hub</title>
+<meta name="description" content="Aprende a construir tu sistema operativo en Notion con guía experta. Mentorías 1:1 con Sara Castellanos, consultora certificada de Notion." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: #fbf7f0;
+  color: #0a0a0a;
+  font-family: 'Montserrat', -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+}
+
+:root {
+  --violet:     #6B5FE8;
+  --blue:       #2C27B8;
+  --blue-mid:   #5BA7DD;
+  --cream:      #fbf7f0;
+  --ink:        #0a0a0a;
+  --muted:      #6b6560;
+  --hairline:   #ece4d4;
+  --violet-light: rgba(107,95,232,0.08);
+  --ease:       cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* ── NAV ── */
+.nav {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(251,247,240,0.94);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--hairline);
+}
+.nav-inner {
+  max-width: 1080px; margin: 0 auto;
+  padding: 18px 40px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.brand-name { font-size: 16px; font-weight: 600; color: var(--blue-mid); letter-spacing: -0.01em; }
+.nav-back {
+  font-size: 13px; font-weight: 500; color: var(--muted);
+  text-decoration: none;
+  transition: color 150ms var(--ease);
+}
+.nav-back:hover { color: var(--violet); }
+
+/* ── HERO ── */
+.hero {
+  max-width: 760px; margin: 0 auto;
+  padding: 80px 40px 64px;
+  text-align: center;
+}
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 24px;
+}
+.eyebrow-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--violet); }
+h1 {
+  font-size: clamp(36px, 5vw, 58px);
+  font-weight: 800; line-height: 1.06;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  margin-bottom: 24px;
+  text-wrap: balance;
+}
+h1 span { color: var(--violet); }
+.hero-desc {
+  font-size: 17px; line-height: 1.7;
+  color: var(--muted);
+  max-width: 580px; margin: 0 auto 40px;
+}
+.hero-cta {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--blue); color: var(--cream);
+  padding: 14px 28px; border-radius: 10px;
+  font-size: 15px; font-weight: 700;
+  text-decoration: none;
+  transition: background 200ms var(--ease), transform 200ms var(--ease);
+}
+.hero-cta:hover { background: #24208F; transform: translateY(-2px); }
+
+/* ── DIVIDER ── */
+.section-divider {
+  max-width: 1080px; margin: 0 auto;
+  padding: 0 40px;
+  border-top: 1px solid var(--hairline);
+}
+
+/* ── PARA QUIEN ── */
+.section { max-width: 1080px; margin: 0 auto; padding: 72px 40px; }
+.section-label {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--violet); margin-bottom: 12px;
+  display: flex; align-items: center; gap: 12px;
+}
+.section-label::after {
+  content: ""; display: block; flex: 1;
+  height: 1px; background: var(--hairline);
+  max-width: 48px;
+}
+h2 {
+  font-size: clamp(26px, 3.2vw, 36px);
+  font-weight: 800; line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--ink); margin-bottom: 40px;
+  text-wrap: balance;
+}
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+@media (max-width: 640px) { .grid-2 { grid-template-columns: 1fr; } }
+
+.card {
+  background: var(--cream);
+  border: 1px solid var(--hairline);
+  border-radius: 14px;
+  padding: 28px 28px 24px;
+  transition: box-shadow 250ms var(--ease), transform 250ms var(--ease);
+}
+.card:hover {
+  box-shadow: 0 8px 32px rgba(107,95,232,0.10);
+  transform: translateY(-3px);
+}
+.card-icon {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: var(--violet-light);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 16px;
+}
+.card-title {
+  font-size: 15px; font-weight: 700;
+  color: var(--ink); margin-bottom: 8px;
+}
+.card-desc {
+  font-size: 14px; line-height: 1.65;
+  color: var(--muted);
+}
+
+/* ── QUE INCLUYE ── */
+.includes-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+@media (max-width: 640px) { .includes-grid { grid-template-columns: 1fr; } }
+
+.include-item {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 20px 22px;
+  background: #fff; border: 1px solid var(--hairline); border-radius: 12px;
+}
+.include-check {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--violet-light);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 1px;
+}
+.include-check svg { width: 12px; height: 12px; }
+.include-text { font-size: 14px; line-height: 1.55; color: var(--ink); font-weight: 500; }
+
+/* ── PRICING ── */
+.pricing-section {
+  max-width: 1080px; margin: 0 auto;
+  padding: 72px 40px;
+}
+.pricing-intro {
+  font-size: 15px; color: var(--muted);
+  margin-bottom: 40px; line-height: 1.6;
+}
+.pricing-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  max-width: 720px;
+}
+@media (max-width: 640px) { .pricing-grid { grid-template-columns: 1fr; } }
+
+.price-card {
+  background: #fff;
+  border: 2px solid var(--hairline);
+  border-radius: 20px;
+  padding: 36px 32px;
+  position: relative; overflow: hidden;
+  transition: transform 0.3s var(--ease), box-shadow 0.3s ease, border-color 0.2s ease;
+}
+.price-card::before {
+  content: ""; position: absolute;
+  top: 0; left: 0; right: 0; height: 3px;
+  background: var(--hairline);
+  transition: background 0.3s ease;
+}
+.price-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 16px rgba(107,95,232,0.08), 0 24px 56px rgba(107,95,232,0.12);
+  border-color: rgba(107,95,232,0.25);
+}
+.price-card:hover::before { background: linear-gradient(90deg, var(--blue-mid), var(--violet)); }
+.price-card.recommended {
+  border-color: rgba(107,95,232,0.35);
+  background: linear-gradient(145deg, rgba(107,95,232,0.03), #fff);
+}
+.price-card.recommended::before { background: linear-gradient(90deg, var(--blue-mid), var(--violet)); }
+
+.price-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 5px 12px; border-radius: 100px;
+  background: var(--violet-light); color: var(--violet);
+  border: 1px solid rgba(107,95,232,0.2);
+  margin-bottom: 20px;
+}
+.price-card.recommended .price-tag {
+  background: rgba(44,39,184,0.08); color: var(--blue);
+  border-color: rgba(44,39,184,0.2);
+}
+.price-name {
+  font-size: 20px; font-weight: 800;
+  color: var(--ink); margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+.price-desc {
+  font-size: 13px; line-height: 1.6;
+  color: var(--muted); margin-bottom: 28px;
+}
+.price-number {
+  font-size: 52px; font-weight: 900;
+  letter-spacing: -0.03em;
+  color: var(--ink); line-height: 1;
+  margin-bottom: 4px;
+}
+.price-card.recommended .price-number { color: var(--blue); }
+.price-currency {
+  font-size: 13px; font-weight: 600;
+  color: var(--muted); margin-bottom: 28px;
+}
+.price-divider { height: 1px; background: var(--hairline); margin: 20px 0; }
+.price-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.price-list li {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 14px; line-height: 1.5; color: var(--ink);
+}
+.price-list li::before {
+  content: "";
+  width: 18px; height: 18px; border-radius: 50%;
+  background: var(--violet-light); flex-shrink: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='8' viewBox='0 0 10 8'%3E%3Cpath d='M1 4l2.5 2.5L9 1' stroke='%236B5FE8' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-top: 2px;
+}
+.price-note {
+  margin-top: 24px;
+  font-size: 12px; color: var(--muted); line-height: 1.5;
+}
+
+/* ── CTA FINAL ── */
+.cta-section {
+  background: linear-gradient(135deg, var(--blue) 0%, var(--violet) 100%);
+  padding: 80px 40px;
+  text-align: center;
+}
+.cta-inner { max-width: 600px; margin: 0 auto; }
+.cta-eyebrow {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(255,255,255,0.65); margin-bottom: 16px;
+}
+.cta-title {
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 800; line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #fff; margin-bottom: 16px;
+  text-wrap: balance;
+}
+.cta-desc {
+  font-size: 15px; line-height: 1.7;
+  color: rgba(255,255,255,0.75);
+  margin-bottom: 36px;
+}
+.cta-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: #fff; color: var(--blue);
+  padding: 16px 32px; border-radius: 12px;
+  font-size: 15px; font-weight: 700;
+  text-decoration: none;
+  transition: transform 200ms var(--ease), box-shadow 200ms ease;
+}
+.cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--cream);
+  border-top: 1px solid var(--hairline);
+  padding: 36px 40px;
+  text-align: center;
+}
+.footer-inner { max-width: 1080px; margin: 0 auto; }
+.footer-brand {
+  font-size: 14px; font-weight: 600;
+  color: var(--blue-mid); margin-bottom: 8px;
+}
+.footer-note {
+  font-size: 12px; color: var(--muted); line-height: 1.5;
+}
+.footer-note a { color: var(--muted); }
+
+/* ── REVEAL ── */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.5s ease, transform 0.5s var(--ease); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="https://systechub.com" class="brand">
+      <svg width="28" height="28" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="40" height="40" rx="10" fill="#2C27B8"/>
+        <path d="M12 20C12 15.58 15.58 12 20 12C24.42 12 28 15.58 28 20C28 24.42 24.42 28 20 28" stroke="#fbf7f0" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="20" cy="20" r="3" fill="#6B5FE8"/>
+        <path d="M20 28C17.79 28 16 26.21 16 24C16 21.79 17.79 20 20 20" stroke="#5BA7DD" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
+      <span class="brand-name">SysteC Hub</span>
+    </a>
+    <a href="https://systechub.com" class="nav-back">Volver al sitio</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="eyebrow">
+    <span class="eyebrow-dot"></span>
+    Mentoría 1:1 en Notion
+  </div>
+  <h1>Construye tu sistema operativo.<br /><span>Con guía, paso a paso.</span></h1>
+  <p class="hero-desc">
+    Aprende a diseñar y construir tu propio sistema en Notion con acompañamiento directo.
+    Sesiones privadas con Sara Castellanos, consultora certificada de Notion con experiencia
+    en empresas de servicios en LATAM y España.
+  </p>
+  <a href="mailto:sara@systechub.com?subject=Quiero%20una%20mentor%C3%ADa%201:1" class="hero-cta">
+    Reservar mi mentoría
+  </a>
+</section>
+
+<div class="section-divider"><div></div></div>
+
+<!-- PARA QUIEN -->
+<section class="section">
+  <div class="section-label">Para quién es</div>
+  <h2>La mentoría es para ti si...</h2>
+  <div class="grid-2 reveal">
+    <div class="card">
+      <div class="card-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6B5FE8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+      </div>
+      <div class="card-title">Quieres construirlo tú mismo</div>
+      <div class="card-desc">No quieres que alguien lo haga por ti — quieres entender cómo funciona y tener el control total de tu sistema desde el primer día.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6B5FE8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+        </svg>
+      </div>
+      <div class="card-title">Eres solopreneur o freelancer</div>
+      <div class="card-desc">Manejas todo solo y necesitas un sistema que organice tus clientes, proyectos y tareas — sin depender de herramientas complicadas ni de ayuda externa.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6B5FE8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+        </svg>
+      </div>
+      <div class="card-title">Ya tienes Notion pero no lo usas bien</div>
+      <div class="card-desc">Creaste bases de datos que no funcionan como querías, o tu workspace está tan desordenado que prefieres no abrirlo. La mentoría te ayuda a ordenarlo desde la raíz.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6B5FE8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+        </svg>
+      </div>
+      <div class="card-title">Quieres avanzar rápido y sin rodeos</div>
+      <div class="card-desc">Los tutoriales de YouTube no responden tus preguntas específicas. Quieres sesiones enfocadas en tu caso, tu negocio y tus necesidades concretas.</div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"><div></div></div>
+
+<!-- QUE INCLUYE -->
+<section class="section">
+  <div class="section-label">Qué incluye</div>
+  <h2>Lo que trabajamos juntos en cada sesión</h2>
+  <div class="includes-grid reveal">
+    <div class="include-item">
+      <div class="include-check">
+        <svg viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 4l2.5 2.5L11 1" stroke="#6B5FE8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <span class="include-text">Diagnóstico inicial de tu flujo de trabajo actual y lo que necesita ordenarse</span>
+    </div>
+    <div class="include-item">
+      <div class="include-check">
+        <svg viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 4l2.5 2.5L11 1" stroke="#6B5FE8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <span class="include-text">Diseño de la estructura de tu workspace con bases de datos y relaciones</span>
+    </div>
+    <div class="include-item">
+      <div class="include-check">
+        <svg viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 4l2.5 2.5L11 1" stroke="#6B5FE8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <span class="include-text">Construcción en vivo — tú construyes, yo guío y corrijo en tiempo real</span>
+    </div>
+    <div class="include-item">
+      <div class="include-check">
+        <svg viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 4l2.5 2.5L11 1" stroke="#6B5FE8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <span class="include-text">Grabación de cada sesión para que puedas revisarla cuando quieras</span>
+    </div>
+    <div class="include-item">
+      <div class="include-check">
+        <svg viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 4l2.5 2.5L11 1" stroke="#6B5FE8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <span class="include-text">Soporte asincrónico por WhatsApp entre sesiones para resolver dudas puntuales</span>
+    </div>
+    <div class="include-item">
+      <div class="include-check">
+        <svg viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 4l2.5 2.5L11 1" stroke="#6B5FE8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <span class="include-text">Recursos y plantillas adaptados a tu caso específico</span>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"><div></div></div>
+
+<!-- PRICING -->
+<section class="pricing-section">
+  <div class="section-label">Inversión</div>
+  <h2>Elige el plan que se adapta a tu objetivo</h2>
+  <p class="pricing-intro">Pago único, 100% por adelantado. Métodos de pago: PayPal, Global66 o transferencia en Colombia.</p>
+  <div class="pricing-grid reveal">
+
+    <div class="price-card">
+      <div class="price-tag">Mentoría base</div>
+      <div class="price-name">4 horas</div>
+      <div class="price-desc">Para quien tiene un objetivo concreto y quiere resultados rápidos en una o dos sesiones enfocadas.</div>
+      <div class="price-number">$500</div>
+      <div class="price-currency">USD · pago único</div>
+      <div class="price-divider"></div>
+      <ul class="price-list">
+        <li>4 horas de mentoría en sesiones de 2h</li>
+        <li>Grabación de cada sesión</li>
+        <li>Soporte async entre sesiones</li>
+        <li>Recursos y plantillas del caso</li>
+      </ul>
+      <p class="price-note">Equivalencia referencial: 1 USD ≈ 3.700 COP</p>
+    </div>
+
+    <div class="price-card recommended">
+      <div class="price-tag">Mentoría completa · Recomendada</div>
+      <div class="price-name">8 horas</div>
+      <div class="price-desc">Para quien quiere construir su sistema completo desde cero, con tiempo para implementar, ajustar y consolidar.</div>
+      <div class="price-number">$1,000</div>
+      <div class="price-currency">USD · pago único</div>
+      <div class="price-divider"></div>
+      <ul class="price-list">
+        <li>8 horas de mentoría en sesiones de 2h</li>
+        <li>Grabación de cada sesión</li>
+        <li>Soporte async entre sesiones</li>
+        <li>Recursos y plantillas del caso</li>
+        <li>Revisión final del sistema construido</li>
+      </ul>
+      <p class="price-note">Equivalencia referencial: 1 USD ≈ 3.700 COP</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-section">
+  <div class="cta-inner reveal">
+    <div class="cta-eyebrow">Próximo paso</div>
+    <h2 class="cta-title">Agenda tu mentoría y empieza a construir</h2>
+    <p class="cta-desc">
+      Escríbeme directamente y en menos de 24 horas acordamos la primera sesión,
+      el horario y el foco de trabajo.
+    </p>
+    <a href="mailto:sara@systechub.com?subject=Quiero%20una%20mentor%C3%ADa%201:1%20en%20Notion" class="cta-btn">
+      Escribir a Sara
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">SysteC Hub</div>
+    <p class="footer-note">
+      Sara Castellanos · Consultora certificada de Notion · LATAM &amp; España<br />
+      <a href="mailto:sara@systechub.com">sara@systechub.com</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
