@@ -1,0 +1,292 @@
+/* =============================================================
+   SysteC Hub — Colors & Type
+   Del Caos al Sistema
+   ============================================================= */
+
+/* Brand font — self-hosted Montserrat */
+@font-face {
+  font-family: 'Montserrat';
+  src: url('fonts/Montserrat-ExtraLight.otf') format('opentype');
+  font-weight: 200; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url('fonts/Montserrat-Light.otf') format('opentype');
+  font-weight: 300; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url('fonts/Montserrat-Regular.otf') format('opentype');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url('fonts/Montserrat-Medium.otf') format('opentype');
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url('fonts/Montserrat-SemiBold.otf') format('opentype');
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url('fonts/Montserrat-Bold.otf') format('opentype');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url('fonts/Montserrat-ExtraBold.otf') format('opentype');
+  font-weight: 800; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url('fonts/Montserrat-Black.otf') format('opentype');
+  font-weight: 900; font-style: normal; font-display: swap;
+}
+
+:root {
+  /* ---------- Brand palette (primary) ---------- */
+  --violeta-sistema:  #6B5FE8;   /* isotipo, primary accent, interactive */
+  --azul-medio:       #5BA7DD;   /* wordmark, communication, links */
+  --crema:            #F9F1E3;   /* base background */
+  --negro:            #000000;   /* type, mono logo, strong contrast */
+
+  /* ---------- Brand palette (secondary) ---------- */
+  --azul-claro:       #B6D4FB;   /* subtle backgrounds, cards, support */
+  --azul-profundo:    #2C27B8;   /* headers, CTAs, high-contrast blocks */
+
+  /* ---------- Tints & utility mixes ---------- */
+  --crema-80:         #F9F1E3CC;
+  --violeta-12:       #6B5FE81F;  /* hover wash */
+  --violeta-24:       #6B5FE83D;  /* focus ring */
+  --negro-64:         #000000A3;  /* secondary text on crema */
+  --negro-40:         #00000066;  /* tertiary / placeholder */
+  --negro-12:         #0000001F;  /* hairline */
+  --crema-hairline:   #EDE4D1;    /* subtle divider on crema */
+
+  /* ---------- Semantic roles (light / brand default) ---------- */
+  --bg:               var(--crema);
+  --bg-alt:           var(--azul-claro);
+  --bg-inverse:       var(--azul-profundo);
+  --surface:          #FFFFFF;
+  --surface-muted:    #FBF5EA;
+
+  --fg:               var(--negro);
+  --fg-muted:         var(--negro-64);
+  --fg-subtle:        var(--negro-40);
+  --fg-on-inverse:    var(--crema);
+
+  --accent:           var(--violeta-sistema);
+  --accent-strong:    var(--azul-profundo);
+  --link:             var(--azul-medio);
+  --link-hover:       var(--azul-profundo);
+
+  --border:           var(--negro-12);
+  --border-strong:    var(--negro);
+  --divider:          var(--crema-hairline);
+
+  /* ---------- Radii ---------- */
+  --radius-xs:  4px;
+  --radius-sm:  6px;
+  --radius-md:  8px;
+  --radius-lg:  12px;
+  --radius-xl:  16px;
+  --radius-pill: 999px;
+
+  /* ---------- Spacing scale ---------- */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  /* ---------- Elevation (subtle — no hard shadows) ---------- */
+  --shadow-none:   none;
+  --shadow-soft:   0 1px 2px rgba(0,0,0,0.04), 0 2px 8px rgba(0,0,0,0.04);
+  --shadow-card:   0 1px 2px rgba(0,0,0,0.05), 0 6px 16px rgba(0,0,0,0.06);
+  --shadow-lift:   0 4px 12px rgba(44,39,184,0.08), 0 16px 32px rgba(44,39,184,0.08);
+  --focus-ring:    0 0 0 3px var(--violeta-24);
+
+  /* ---------- Type foundations ---------- */
+  --font-sans: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+  --fw-regular: 400;
+  --fw-medium:  500;
+  --fw-semi:    600;
+  --fw-bold:    700;
+  --fw-black:   900;
+
+  /* Type scale (editorial, generous) */
+  --text-display: 72px;
+  --text-h1:      56px;
+  --text-h2:      40px;
+  --text-h3:      28px;
+  --text-h4:      20px;
+  --text-body:    16px;
+  --text-small:   14px;
+  --text-caption: 12px;
+
+  --lh-tight:    1.05;
+  --lh-heading:  1.15;
+  --lh-body:     1.55;
+  --lh-relaxed:  1.7;
+
+  --track-tight:  -0.02em;
+  --track-normal: 0;
+  --track-wide:   0.04em;
+
+  /* ---------- Motion ---------- */
+  --ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-exit:     cubic-bezier(0.4, 0, 1, 1);
+  --dur-fast:      120ms;
+  --dur-base:      200ms;
+  --dur-slow:      320ms;
+}
+
+/* ======================================================
+   Inverse palette — apply to ancestor for azul-profundo/negro sections
+   ====================================================== */
+.sc-inverse,
+[data-theme="inverse"] {
+  --bg:             var(--azul-profundo);
+  --bg-alt:         var(--negro);
+  --surface:        #3632C4;
+  --surface-muted:  #24208F;
+  --fg:             var(--crema);
+  --fg-muted:       #F9F1E3BF;
+  --fg-subtle:      #F9F1E380;
+  --border:         #F9F1E333;
+  --divider:        #F9F1E31F;
+  --link:           var(--azul-claro);
+  --link-hover:     var(--crema);
+  --accent-strong:  var(--azul-claro);
+}
+
+.sc-dark,
+[data-theme="dark"] {
+  --bg:             var(--negro);
+  --bg-alt:         #111111;
+  --surface:        #121212;
+  --surface-muted:  #1a1a1a;
+  --fg:             var(--crema);
+  --fg-muted:       #F9F1E3BF;
+  --fg-subtle:      #F9F1E380;
+  --border:         #F9F1E333;
+  --divider:        #F9F1E31F;
+}
+
+/* ======================================================
+   Base element defaults (opt-in via .sc-typography or html)
+   ====================================================== */
+html, body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  line-height: var(--lh-body);
+  font-weight: var(--fw-regular);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+.sc-display {
+  font-size: var(--text-display);
+  font-weight: var(--fw-black);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--track-tight);
+}
+
+h1, .sc-h1 {
+  font-size: var(--text-h1);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--track-tight);
+  margin: 0 0 var(--space-5) 0;
+}
+
+h2, .sc-h2 {
+  font-size: var(--text-h2);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--track-tight);
+  margin: 0 0 var(--space-4) 0;
+}
+
+h3, .sc-h3 {
+  font-size: var(--text-h3);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--track-tight);
+  margin: 0 0 var(--space-3) 0;
+}
+
+h4, .sc-h4 {
+  font-size: var(--text-h4);
+  font-weight: var(--fw-semi);
+  line-height: var(--lh-heading);
+  margin: 0 0 var(--space-2) 0;
+}
+
+p, .sc-body {
+  font-size: var(--text-body);
+  line-height: var(--lh-body);
+  margin: 0 0 var(--space-4) 0;
+  text-wrap: pretty;
+}
+
+.sc-small   { font-size: var(--text-small); }
+.sc-caption {
+  font-size: var(--text-caption);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--track-wide);
+  color: var(--fg-muted);
+}
+.sc-overline {
+  font-size: var(--text-caption);
+  font-weight: var(--fw-semi);
+  letter-spacing: var(--track-wide);
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+a, .sc-link {
+  color: var(--link);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color var(--dur-fast) var(--ease-standard),
+              border-color var(--dur-fast) var(--ease-standard);
+}
+a:hover, .sc-link:hover {
+  color: var(--link-hover);
+  border-bottom-color: currentColor;
+}
+
+code, .sc-mono {
+  font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, monospace;
+  font-size: 0.92em;
+  background: var(--violeta-12);
+  color: var(--azul-profundo);
+  padding: 2px 6px;
+  border-radius: var(--radius-xs);
+}
+
+/* Focus ring — universal */
+:where(button, a, input, textarea, select, [tabindex]):focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-radius: var(--radius-sm);
+}
+
+::selection {
+  background: var(--violeta-sistema);
+  color: var(--crema);
+}

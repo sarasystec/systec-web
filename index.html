@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Del Caos a tu Sistema Operativo en 6 semanas — systec hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: #fbf7f0; color: #000; font-family: 'Montserrat', -apple-system, sans-serif; -webkit-font-smoothing: antialiased; }
+
+:root {
+  --violeta: #6B5FE8;
+  --azul-medio: #5BA7DD;
+  --crema: #fbf7f0;
+  --negro: #000000;
+  --azul-claro: #B6D4FB;
+  --azul-prof: #2C27B8;
+  --hairline: #ece4d4;
+  --violeta-12: rgba(107,95,232,0.12);
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* ── NAV ── */
+.nav {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(251,247,240,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--hairline);
+}
+.nav-inner {
+  max-width: 1280px; margin: 0 auto;
+  padding: 18px 48px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.brand-name { font-size: 18px; font-weight: 500; color: var(--azul-medio); letter-spacing: -0.01em; }
+.nav-links { display: flex; align-items: center; gap: 36px; }
+.nav-link {
+  font-size: 14px; font-weight: 500; color: var(--negro);
+  text-decoration: none; letter-spacing: 0;
+  transition: color 150ms var(--ease);
+}
+.nav-link:hover { color: var(--violeta); }
+.nav-cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--azul-prof); color: var(--crema);
+  padding: 10px 18px; border-radius: 8px;
+  font-size: 14px; font-weight: 600;
+  text-decoration: none;
+  transition: background 200ms var(--ease), transform 200ms var(--ease);
+}
+.nav-cta:hover { background: #24208F; transform: translateY(-1px); color: var(--crema); }
+.nav-cta:active { transform: translateY(0); }
+.nav-cta:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(107,95,232,0.35); border-radius: 8px; }
+
+/* ── HERO ── */
+.hero {
+  max-width: 1280px; margin: 0 auto;
+  padding: 80px 48px 96px;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 72px; align-items: center;
+}
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--azul-prof); margin-bottom: 28px;
+}
+.eyebrow-dot { width: 6px; height: 6px; border-radius: 999px; background: var(--violeta); }
+.eyebrow-divider { width: 24px; height: 1px; background: rgba(0,0,0,0.4); }
+h1.headline {
+  font-size: clamp(44px, 5.4vw, 72px);
+  font-weight: 700; line-height: 1.02;
+  letter-spacing: -0.025em; color: var(--negro);
+  margin: 0 0 28px; text-wrap: balance;
+}
+.headline .caos { font-weight: 300; color: rgba(0,0,0,0.55); font-style: italic; }
+.headline .sistema { color: var(--azul-prof); }
+.headline .weeks {
+  display: inline-block; position: relative;
+  color: var(--violeta); font-weight: 900;
+}
+.headline .weeks::after {
+  content: ""; position: absolute;
+  left: 0; right: 0; bottom: 4px;
+  height: 10px; background: var(--violeta-12);
+  z-index: -1; border-radius: 2px;
+}
+.lede { font-size: 18px; line-height: 1.55; color: rgba(0,0,0,0.72); max-width: 560px; margin: 0 0 40px; }
+.lede strong { color: var(--negro); font-weight: 600; }
+.cta-row { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 48px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 16px 26px; border-radius: 10px;
+  font-family: inherit; font-size: 15px; font-weight: 600;
+  text-decoration: none; border: none; cursor: pointer;
+  transition: all 200ms var(--ease); line-height: 1;
+}
+.btn-primary {
+  background: var(--azul-prof); color: var(--crema);
+  box-shadow: 0 4px 12px rgba(44,39,184,0.12), 0 16px 32px rgba(44,39,184,0.08);
+}
+.btn-primary:hover {
+  background: #24208F; transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(44,39,184,0.18), 0 20px 40px rgba(44,39,184,0.12);
+  color: var(--crema);
+}
+.btn-primary .ic { transition: transform 200ms var(--ease); }
+.btn-primary:hover .ic { transform: translateX(3px); }
+.btn-ghost {
+  background: transparent; color: var(--negro);
+  border: 1px solid rgba(0,0,0,0.18);
+}
+.btn-ghost:hover {
+  background: var(--violeta-12);
+  border-color: var(--violeta); color: var(--negro);
+}
+.btn:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(107,95,232,0.35); }
+.btn:active { transform: translateY(0); }
+
+/* promises */
+.promises {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 28px; padding-top: 32px;
+  border-top: 1px solid var(--hairline); max-width: 620px;
+}
+.promise { display: flex; flex-direction: column; gap: 8px; }
+.promise-ic { width: 22px; height: 22px; color: var(--violeta); margin-bottom: 4px; }
+.promise-title { font-size: 14px; font-weight: 600; color: var(--negro); letter-spacing: -0.005em; }
+.promise-desc { font-size: 13px; line-height: 1.45; color: rgba(0,0,0,0.6); }
+
+/* ── VISUAL STORY (right column) ── */
+.visual { position: relative; aspect-ratio: 1/1; width: 100%; max-width: 540px; justify-self: end; }
+.vcard {
+  position: absolute; background: #fff;
+  border: 1px solid var(--hairline); border-radius: 14px;
+  padding: 18px 20px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 12px 28px rgba(0,0,0,0.06);
+}
+.v-chaos { top: 0; left: 0; width: 232px; transform: rotate(-3.5deg); }
+.v-chaos .v-label {
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(0,0,0,0.5); margin-bottom: 12px;
+}
+.chaos-grid { position: relative; height: 86px; }
+.chaos-block { position: absolute; border-radius: 4px; }
+.b1 { left: 4%;  top: 8%;  width: 28%; height: 22px; transform: rotate(-8deg);  background: rgba(0,0,0,0.18); }
+.b2 { left: 42%; top: 0;   width: 22%; height: 30px; transform: rotate(12deg);  background: rgba(0,0,0,0.22); }
+.b3 { left: 72%; top: 18%; width: 24%; height: 18px; transform: rotate(-15deg); background: rgba(0,0,0,0.16); }
+.b4 { left: 14%; top: 56%; width: 20%; height: 22px; transform: rotate(20deg);  background: rgba(0,0,0,0.14); }
+.b5 { left: 50%; top: 50%; width: 30%; height: 26px; transform: rotate(-6deg);  background: rgba(0,0,0,0.20); }
+.v-sistema { bottom: 8px; right: 0; width: 282px; transform: rotate(2.5deg); }
+.v-sistema .v-label {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--violeta); margin-bottom: 12px;
+  display: flex; align-items: center; gap: 8px;
+}
+.v-sistema .v-label::before {
+  content: ""; width: 6px; height: 6px;
+  border-radius: 999px; background: var(--violeta);
+}
+.v-iso { width: 100%; height: auto; display: block; }
+.v-pill {
+  position: absolute; left: 50%; top: 50%;
+  transform: translate(-50%,-50%) rotate(-2deg);
+  background: var(--azul-prof); color: var(--crema);
+  padding: 14px 22px; border-radius: 999px;
+  display: flex; align-items: center; gap: 12px;
+  box-shadow: 0 8px 24px rgba(44,39,184,0.22); z-index: 2;
+}
+.v-pill-num { font-size: 36px; font-weight: 900; line-height: 1; letter-spacing: -0.02em; }
+.v-pill-txt { font-size: 12px; line-height: 1.2; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; color: rgba(249,241,227,0.92); }
+.v-arrow { position: absolute; left: 24%; top: 34%; width: 200px; height: 200px; color: var(--violeta); opacity: 0.55; pointer-events: none; z-index: 1; }
+.v-chip {
+  position: absolute; background: #fff;
+  border: 1px solid var(--hairline); border-radius: 999px;
+  padding: 8px 14px 8px 10px; font-size: 12px; font-weight: 500; color: var(--negro);
+  display: inline-flex; align-items: center; gap: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.v-chip svg { width: 14px; height: 14px; color: var(--violeta); }
+.c1 { top: 4%; right: 6%; transform: rotate(4deg); }
+.c2 { bottom: 4%; left: 4%; transform: rotate(-5deg); }
+
+/* ── TRUST STRIP ── */
+.trust { border-top: 1px solid var(--hairline); }
+.trust-inner {
+  max-width: 1280px; margin: 0 auto;
+  padding: 28px 48px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 32px; flex-wrap: wrap;
+}
+.trust-label { font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(0,0,0,0.5); }
+.trust-items { display: flex; align-items: center; gap: 44px; flex-wrap: wrap; }
+.trust-item { font-size: 16px; font-weight: 500; color: rgba(0,0,0,0.45); letter-spacing: -0.01em; }
+.trust-item.italic { font-style: italic; font-weight: 400; }
+
+/* ── SERVICES ── */
+.section { max-width: 1280px; margin: 0 auto; padding: 96px 48px; }
+.section-header { text-align: center; margin-bottom: 64px; }
+.overline {
+  font-size: 12px; font-weight: 600; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--violeta);
+  display: inline-flex; align-items: center; gap: 8px; margin-bottom: 20px;
+}
+.overline::before { content: ""; width: 6px; height: 6px; border-radius: 999px; background: var(--violeta); }
+h2.section-title {
+  font-size: clamp(32px, 3.5vw, 48px); font-weight: 700;
+  line-height: 1.1; letter-spacing: -0.025em; color: var(--negro);
+  margin: 0 0 16px; text-wrap: balance;
+}
+.section-sub { font-size: 17px; line-height: 1.6; color: rgba(0,0,0,0.6); max-width: 520px; margin: 0 auto; }
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 20px; }
+.service-card {
+  background: #fff; border: 1px solid var(--hairline); border-radius: 16px;
+  padding: 32px 28px;
+  transition: transform 280ms var(--ease), box-shadow 200ms var(--ease), border-color 200ms var(--ease);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.05);
+}
+.service-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(107,95,232,0.25);
+  box-shadow: 0 4px 8px rgba(107,95,232,0.06), 0 20px 48px rgba(107,95,232,0.12);
+}
+.service-card:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(107,95,232,0.35); border-radius: 16px; }
+.service-ic {
+  width: 44px; height: 44px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 20px;
+}
+.service-tag {
+  display: inline-block; font-size: 10px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 999px; margin-bottom: 12px;
+}
+.service-card h3 { font-size: 18px; font-weight: 700; color: var(--negro); margin: 0 0 10px; letter-spacing: -0.01em; }
+.service-card p { font-size: 14px; line-height: 1.6; color: rgba(0,0,0,0.6); margin: 0 0 16px; }
+.service-price { font-size: 13px; font-weight: 600; }
+
+/* ── PROCESS (dark) ── */
+.process-section {
+  background: var(--azul-prof);
+  background-image:
+    radial-gradient(ellipse 70% 60% at 15% 30%, rgba(107,95,232,0.18) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 50% at 85% 70%, rgba(91,167,221,0.12) 0%, transparent 55%);
+  padding: 96px 0;
+}
+.process-section .section { padding-top: 0; padding-bottom: 0; }
+.process-section .overline { color: rgba(249,241,227,0.7); }
+.process-section .overline::before { background: rgba(249,241,227,0.5); }
+.process-section h2.section-title { color: #F9F1E3; }
+.process-section .section-sub { color: rgba(249,241,227,0.6); }
+.steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 20px; }
+.step-card {
+  background: rgba(249,241,227,0.05); border: 1px solid rgba(249,241,227,0.1); border-radius: 16px;
+  padding: 32px 28px;
+  transition: transform 280ms var(--ease), background 200ms var(--ease);
+}
+.step-card:hover { transform: translateY(-4px); background: rgba(249,241,227,0.08); }
+.step-num { font-size: 44px; font-weight: 900; color: rgba(249,241,227,0.12); line-height: 1; margin-bottom: 16px; letter-spacing: -0.03em; }
+.step-ic { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+.step-card h3 { font-size: 17px; font-weight: 700; color: #F9F1E3; margin: 0 0 10px; letter-spacing: -0.01em; }
+.step-card p { font-size: 14px; line-height: 1.6; color: rgba(249,241,227,0.6); margin: 0; }
+
+/* ── CASES COLUMNS ── */
+.cases-columns-wrap {
+  display: flex; justify-content: center; gap: 20px;
+  max-height: 740px; overflow: hidden;
+  mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+}
+.cases-col { display: flex; flex-direction: column; gap: 20px; flex-shrink: 0; width: 300px; }
+.cases-col-inner {
+  display: flex; flex-direction: column; gap: 20px;
+  animation: scroll-col linear infinite;
+}
+.cases-col-inner:hover { animation-play-state: paused; }
+.cases-col-inner.dur-a { animation-duration: 22s; }
+.cases-col-inner.dur-b { animation-duration: 28s; }
+.cases-col-inner.dur-c { animation-duration: 19s; }
+@keyframes scroll-col { from { transform: translateY(0); } to { transform: translateY(-50%); } }
+
+.case-card {
+  background: #fff; border: 1px solid var(--hairline); border-radius: 14px;
+  overflow: hidden; cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.05);
+  transition: transform 320ms var(--ease), box-shadow 250ms var(--ease), border-color 200ms var(--ease);
+  flex-shrink: 0;
+}
+.case-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  border-color: rgba(107,95,232,0.25);
+  box-shadow: 0 8px 24px rgba(107,95,232,0.1), 0 24px 48px rgba(107,95,232,0.08);
+}
+.case-card:hover .case-img-wrap::after { opacity: 1; }
+.case-img-wrap {
+  position: relative; width: 100%; height: 188px; overflow: hidden; background: var(--azul-claro);
+}
+.case-img-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+.case-img-wrap::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(107,95,232,0.12), rgba(44,39,184,0.1));
+  opacity: 0; transition: opacity 250ms var(--ease);
+}
+.case-label { padding: 14px 16px 16px; display: flex; align-items: center; gap: 8px; }
+.case-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--violeta); flex-shrink: 0; }
+.case-name { font-size: 13px; font-weight: 600; color: var(--negro); letter-spacing: -0.01em; }
+
+/* ── TESTIMONIALS (keep for quotes below cases) ── */
+.tcard {
+  background: #fff; border: 1px solid var(--hairline); border-radius: 16px;
+  padding: 32px 28px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.05);
+  transition: transform 280ms var(--ease);
+}
+.tcard:hover { transform: translateY(-4px); }
+.stars { display: flex; gap: 3px; margin-bottom: 20px; }
+blockquote { font-size: 15px; line-height: 1.7; color: var(--negro); font-style: italic; margin: 0 0 20px; }
+.tauthor { display: flex; align-items: center; gap: 12px; }
+.tauthor-av { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 12px; font-weight: 700; }
+.tauthor-name { font-size: 14px; font-weight: 600; color: var(--negro); }
+.tauthor-role { font-size: 12px; color: rgba(0,0,0,0.5); }
+
+/* ── CTA ── */
+.cta-section { padding: 96px 48px; max-width: 1280px; margin: 0 auto; }
+.cta-box {
+  background: linear-gradient(135deg, var(--azul-prof) 0%, var(--violeta) 100%);
+  border-radius: 24px; padding: 72px 64px; text-align: center; position: relative; overflow: hidden;
+  box-shadow: 0 8px 24px rgba(44,39,184,0.2), 0 32px 80px rgba(107,95,232,0.2);
+}
+.cta-box::before {
+  content: ""; position: absolute; top: -60px; right: -60px;
+  width: 220px; height: 220px; border-radius: 50%; background: rgba(249,241,227,0.06);
+}
+.cta-box::after {
+  content: ""; position: absolute; bottom: -40px; left: -40px;
+  width: 160px; height: 160px; border-radius: 50%; background: rgba(249,241,227,0.04);
+}
+.cta-box .overline { color: rgba(249,241,227,0.65); margin-bottom: 24px; }
+.cta-box .overline::before { background: rgba(249,241,227,0.4); }
+.cta-box h2 { font-size: clamp(28px,3.5vw,44px); font-weight: 700; color: #F9F1E3; letter-spacing: -0.025em; line-height: 1.1; margin: 0 0 16px; }
+.cta-box p { font-size: 16px; color: rgba(249,241,227,0.7); line-height: 1.6; max-width: 480px; margin: 0 auto 40px; }
+.btn-cta-white {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: #F9F1E3; color: var(--azul-prof);
+  padding: 18px 32px; border-radius: 10px;
+  font-family: inherit; font-size: 15px; font-weight: 700;
+  text-decoration: none; transition: all 280ms var(--ease);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12), 0 8px 24px rgba(0,0,0,0.1);
+}
+.btn-cta-white:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.16), 0 16px 40px rgba(0,0,0,0.14);
+  background: #fff;
+}
+.btn-cta-white:active { transform: translateY(0); }
+.btn-cta-white .ic { transition: transform 200ms var(--ease); }
+.btn-cta-white:hover .ic { transform: translateX(3px); }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--negro); padding: 40px 48px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.footer-inner {
+  max-width: 1280px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;
+}
+.footer-copy { font-size: 13px; color: rgba(255,255,255,0.35); }
+.footer-links { display: flex; gap: 24px; }
+.footer-link { font-size: 13px; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 150ms var(--ease); }
+.footer-link:hover { color: rgba(255,255,255,0.8); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .hero { grid-template-columns: 1fr; gap: 56px; padding: 56px 32px 72px; }
+  .visual { justify-self: center; max-width: 480px; }
+  .nav-inner { padding: 16px 24px; }
+  .nav-links { gap: 20px; }
+  .nav-link:not(.nav-cta) { display: none; }
+  .trust-inner, .section, .cta-section, .process-section .section { padding-left: 32px; padding-right: 32px; }
+  footer { padding: 32px 24px; }
+}
+@media (max-width: 640px) {
+  .hero { padding: 40px 20px 56px; gap: 40px; }
+  h1.headline { font-size: 40px; }
+  .lede { font-size: 16px; }
+  .promises { grid-template-columns: 1fr; gap: 18px; }
+  .cta-row { gap: 12px; }
+  .btn { width: 100%; justify-content: center; }
+  .visual { aspect-ratio: auto; height: 360px; max-width: 360px; }
+  .v-chaos { width: 180px; }
+  .v-sistema { width: 220px; }
+  .v-pill-num { font-size: 28px; }
+  .section, .cta-section, .process-section .section { padding-left: 20px; padding-right: 20px; }
+  .cta-box { padding: 48px 24px; }
+  footer { padding: 28px 20px; }
+}
+
+
+::selection { background: var(--violeta); color: var(--crema); }
+
+/* ── MARQUEE ── */
+.marquee-track { overflow: hidden; border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); padding: 18px 0; background: var(--crema); }
+.marquee-inner { display: flex; gap: 64px; width: max-content; animation: marquee 22s linear infinite; }
+.marquee-inner:hover { animation-play-state: paused; }
+.marquee-item { font-size: 13px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(0,0,0,0.35); white-space: nowrap; display: flex; align-items: center; gap: 12px; }
+.marquee-item::after { content: "·"; color: var(--violeta); opacity: 0.5; }
+@keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+/* ── FLOATING CARDS ── */
+@keyframes float-slow { 0%,100% { transform: rotate(-3.5deg) translateY(0); } 50% { transform: rotate(-3.5deg) translateY(-8px); } }
+@keyframes float-slow2 { 0%,100% { transform: rotate(2.5deg) translateY(0); } 50% { transform: rotate(2.5deg) translateY(-10px); } }
+@keyframes float-pill { 0%,100% { transform: translate(-50%,-50%) rotate(-2deg) translateY(0); } 50% { transform: translate(-50%,-50%) rotate(-2deg) translateY(-6px); } }
+.v-chaos { animation: float-slow 5s ease-in-out infinite; }
+.v-sistema { animation: float-slow2 6s ease-in-out infinite 0.8s; }
+.v-pill { animation: float-pill 4s ease-in-out infinite 0.4s; }
+
+/* ── SCROLL REVEAL ── */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.65s var(--ease), transform 0.65s var(--ease); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ── HERO ENTRANCE ── */
+@keyframes hero-up { from { opacity:0; transform:translateY(32px); } to { opacity:1; transform:translateY(0); } }
+.hero-copy .eyebrow { animation: hero-up 0.6s var(--ease) 0.1s both; }
+.hero-copy h1       { animation: hero-up 0.7s var(--ease) 0.2s both; }
+.hero-copy .lede    { animation: hero-up 0.7s var(--ease) 0.35s both; }
+.hero-copy .cta-row { animation: hero-up 0.7s var(--ease) 0.45s both; }
+.hero-copy .promises{ animation: hero-up 0.7s var(--ease) 0.55s both; }
+@keyframes hero-visual { from { opacity:0; transform:scale(0.94) translateY(20px); } to { opacity:1; transform:scale(1) translateY(0); } }
+.visual { animation: hero-visual 0.9s var(--ease) 0.3s both; }
+
+/* ── STAT COUNTER ── */
+.stat-val { display: inline-block; font-size: clamp(36px,4vw,56px); font-weight: 900; color: var(--negro); letter-spacing: -0.03em; line-height: 1; }
+.stat-desc { font-size: 14px; line-height: 1.45; color: rgba(0,0,0,0.55); margin-top: 6px; max-width: 160px; }
+.stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); background: #fff; }
+.stat-item {
+  text-align: center; padding: 40px 24px;
+  border-right: 1px solid var(--hairline);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  transition: background 0.3s var(--ease);
+  cursor: default;
+}
+.stat-item:last-child { border-right: none; }
+.stat-item:hover { background: rgba(182,212,251,0.25); }
+.stat-desc { text-align: center; max-width: 130px; }
+
+/* ── PROBLEM SECTION ── */
+.problem-section { background: var(--negro); padding: 80px 0; }
+.problem-section .section { padding-top: 0; padding-bottom: 0; }
+.problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.problem-label { font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(249,241,227,0.45); margin-bottom: 24px; display: flex; align-items: center; gap: 10px; }
+.problem-label::before { content: ""; width: 20px; height: 1px; background: rgba(249,241,227,0.3); }
+.problem-headline { font-size: clamp(28px,3vw,40px); font-weight: 700; color: #fbf7f0; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 20px; }
+.problem-headline em { font-weight: 300; font-style: italic; color: rgba(249,241,227,0.55); }
+.pain-list { list-style: none; display: flex; flex-direction: column; gap: 14px; margin: 0 0 36px; }
+.pain-item { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; color: rgba(249,241,227,0.75); line-height: 1.55; }
+.pain-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--violeta); flex-shrink: 0; margin-top: 9px; }
+.solution-card { background: rgba(249,241,227,0.05); border: 1px solid rgba(249,241,227,0.1); border-radius: 16px; padding: 32px; }
+.solution-label { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--violeta); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+.solution-label::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--violeta); }
+.solution-headline { font-size: 22px; font-weight: 700; color: #fbf7f0; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 14px; }
+.solution-body { font-size: 14px; line-height: 1.65; color: rgba(249,241,227,0.6); }
+
+@media (max-width: 900px) {
+  .problem-grid { grid-template-columns: 1fr; gap: 48px; }
+  .stats-row { grid-template-columns: repeat(2,1fr); }
+  .stat-item:nth-child(2) { border-right: none; }
+  .stat-item:nth-child(3) { border-top: 1px solid var(--hairline); }
+  .stat-item:nth-child(4) { border-top: 1px solid var(--hairline); border-right: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="brand" aria-label="systec hub">
+      <svg width="28" height="28" viewBox="0 0 200 200" fill="none" aria-hidden="true">
+        <rect x="74" y="20" width="86" height="40" rx="8" fill="#6B5FE8"/>
+        <rect x="40" y="32" width="40" height="72" rx="8" fill="#6B5FE8"/>
+        <rect x="86" y="80" width="36" height="36" rx="6" fill="#6B5FE8"/>
+        <rect x="128" y="92" width="34" height="56" rx="6" fill="#6B5FE8"/>
+        <rect x="56" y="140" width="86" height="40" rx="8" fill="#6B5FE8"/>
+      </svg>
+      <span class="brand-name">systec hub</span>
+    </a>
+    <div class="nav-links">
+      <a class="nav-link" href="#problema">El problema</a>
+      <a class="nav-link" href="#servicios">Servicios</a>
+      <a class="nav-link" href="#metodo">Método</a>
+      <a class="nav-link" href="#resultados">Resultados</a>
+      <a class="nav-cta" href="#empezar">
+        Agenda tu llamada
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+
+  <!-- LEFT -->
+  <div class="hero-copy">
+    <div class="eyebrow">
+      <span class="eyebrow-dot"></span>
+      CONSULTORA CERTIFICADA NOTION
+      <span class="eyebrow-divider"></span>
+      LATAM · España · USA
+    </div>
+
+    <h1 class="headline">
+      Del <span class="caos">Caos</span> a tu <span class="sistema">Sistema&nbsp;Operativo</span><br/>en <span class="weeks">6 semanas</span>
+    </h1>
+
+    <p class="lede">
+      Tu equipo pierde tiempo buscando información. Las tareas no tienen dueño.
+      Construimos tu <strong>sistema operativo en Notion</strong> para que cada persona sepa
+      qué hacer, cuándo y cómo — todo visible en un solo panel de control.
+    </p>
+
+    <div class="cta-row">
+      <a href="#empezar" class="btn btn-primary">
+        Agenda tu llamada
+        <svg class="ic" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#servicios" class="btn btn-ghost">Ver servicios</a>
+    </div>
+
+    <div class="promises">
+      <div class="promise">
+        <svg class="promise-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        <div class="promise-title">+8 horas/semana</div>
+        <p class="promise-desc">Tu equipo opera solo sin que todo dependa de ti.</p>
+      </div>
+      <div class="promise">
+        <svg class="promise-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+        <div class="promise-title">Todo en un lugar</div>
+        <p class="promise-desc">CRM, proyectos, finanzas y equipo en un sistema único.</p>
+      </div>
+      <div class="promise">
+        <svg class="promise-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l3-3 3 3 5-6"/></svg>
+        <div class="promise-title">+16% tasa de cierre</div>
+        <p class="promise-desc">Decisiones con datos reales, no con suposiciones.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT: visual story -->
+  <div class="visual" aria-hidden="true">
+    <svg class="v-arrow" viewBox="0 0 240 240" fill="none">
+      <path d="M30 60 C 90 30, 170 80, 210 180" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="4 7"/>
+    </svg>
+
+    <div class="vcard v-chaos">
+      <div class="v-label">Hoy · Caos</div>
+      <div class="chaos-grid">
+        <div class="chaos-block b1"></div>
+        <div class="chaos-block b2"></div>
+        <div class="chaos-block b3"></div>
+        <div class="chaos-block b4"></div>
+        <div class="chaos-block b5"></div>
+      </div>
+    </div>
+
+    <div class="v-chip c1">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+      Semana 0 · Diagnóstico
+    </div>
+
+    <div class="v-pill">
+      <div class="v-pill-num">6</div>
+      <div class="v-pill-txt">semanas<br/>de implementación</div>
+    </div>
+
+    <div class="vcard v-sistema">
+      <div class="v-label">Semana 6 · Sistema operativo</div>
+      <svg class="v-iso" viewBox="0 0 200 200" fill="none">
+        <rect x="74" y="20" width="86" height="40" rx="8" fill="#6B5FE8"/>
+        <rect x="40" y="32" width="40" height="72" rx="8" fill="#6B5FE8"/>
+        <rect x="86" y="80" width="36" height="36" rx="6" fill="#6B5FE8"/>
+        <rect x="128" y="92" width="34" height="56" rx="6" fill="#6B5FE8"/>
+        <rect x="56" y="140" width="86" height="40" rx="8" fill="#6B5FE8"/>
+      </svg>
+    </div>
+
+    <div class="v-chip c2">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+      Equipo alineado
+    </div>
+  </div>
+
+</section>
+
+<!-- ── STATS ── -->
+<div class="stats-row reveal">
+  <div class="stat-item"><div class="stat-val" data-target="50">0</div><div class="stat-desc">empresas con sistemas operativos en Notion</div></div>
+  <div class="stat-item"><div class="stat-val" data-target="8">0</div><div class="stat-desc">horas semanales liberadas en promedio</div></div>
+  <div class="stat-item"><div class="stat-val" data-suffix="%" data-target="16">0</div><div class="stat-desc">incremento en tasa de cierre de ventas</div></div>
+  <div class="stat-item"><div class="stat-val" data-target="6">0</div><div class="stat-desc">semanas para tener un sistema operativo completo</div></div>
+</div>
+
+<!-- ── MARQUEE ── -->
+<div class="marquee-track">
+  <div class="marquee-inner">
+    <span class="marquee-item">Empresas de servicios</span>
+    <span class="marquee-item">Consultoras</span>
+    <span class="marquee-item">Agencias creativas</span>
+    <span class="marquee-item">Equipos remotos</span>
+    <span class="marquee-item">Freelancers</span>
+    <span class="marquee-item">Colombia · México · España · USA</span>
+    <span class="marquee-item">Notion Partner Certificada</span>
+    <span class="marquee-item">Empresas de servicios</span>
+    <span class="marquee-item">Consultoras</span>
+    <span class="marquee-item">Agencias creativas</span>
+    <span class="marquee-item">Equipos remotos</span>
+    <span class="marquee-item">Freelancers</span>
+    <span class="marquee-item">Colombia · México · España · USA</span>
+    <span class="marquee-item">Notion Partner Certificada</span>
+  </div>
+</div>
+
+<!-- ── PROBLEM ── -->
+<div id="problema" class="problem-section">
+  <div class="section">
+    <div class="problem-grid">
+      <div class="reveal">
+        <div class="problem-label">El problema real</div>
+        <h2 class="problem-headline">
+          El problema no es<br/><em>la herramienta.</em><br/>Es no tener un sistema.
+        </h2>
+        <ul class="pain-list">
+          <li class="pain-item"><span class="pain-dot"></span>Tu equipo pierde tiempo buscando información que nadie sabe dónde está.</li>
+          <li class="pain-item"><span class="pain-dot"></span>Las tareas no tienen dueño. Todo termina dependiendo de ti.</li>
+          <li class="pain-item"><span class="pain-dot"></span>Gastas dinero en herramientas que no están conectadas entre sí.</li>
+          <li class="pain-item"><span class="pain-dot"></span>Tomas decisiones sin datos reales porque los indicadores están en planillas dispersas.</li>
+        </ul>
+        <a href="#empezar" class="btn btn-primary" style="width:fit-content;">
+          Quiero organizar mi empresa
+          <svg class="ic" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <div class="solution-card">
+          <div class="solution-label">La solución</div>
+          <div class="solution-headline">Un sistema operativo en Notion construido para tu negocio.</div>
+          <p class="solution-body">Desde que llega una oportunidad al CRM hasta que se convierte en proyecto con tareas y responsables. Todo visible en un panel de control. Tu equipo sabe qué hacer, cuándo y cómo — sin necesitarte en cada paso.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── SERVICES ── -->
+<section id="servicios" class="section">
+  <div class="section-header reveal">
+    <div class="overline">Servicios</div>
+    <h2 class="section-title">Construimos el sistema<br/>que tu negocio necesita.</h2>
+    <p class="section-sub">Elige el nivel de acompañamiento que mejor se adapta a tu momento. Todos los servicios incluyen diagnóstico previo.</p>
+  </div>
+
+  <div class="services-grid">
+
+    <div class="service-card reveal reveal-delay-1" tabindex="0">
+      <div class="service-ic" style="background: rgba(107,95,232,0.1);">
+        <svg width="20" height="20" viewBox="0 0 22 22" fill="none"><rect x="2" y="2" width="8" height="8" rx="2" fill="#6B5FE8"/><rect x="12" y="2" width="8" height="8" rx="2" fill="#6B5FE8" opacity="0.4"/><rect x="2" y="12" width="8" height="8" rx="2" fill="#6B5FE8" opacity="0.4"/><rect x="12" y="12" width="8" height="8" rx="2" fill="#6B5FE8" opacity="0.2"/></svg>
+      </div>
+      <span class="service-tag" style="color:#6B5FE8; background:rgba(107,95,232,0.08);">Hecho por mí</span>
+      <h3>Sistemas personalizados</h3>
+      <p>CRM, gestión de proyectos, finanzas, RRHH. Diseñados según la arquitectura de tu negocio y entregados listos para operar en 6 sesiones.</p>
+    </div>
+
+    <div class="service-card reveal reveal-delay-2" tabindex="0">
+      <div class="service-ic" style="background: rgba(44,39,184,0.08);">
+        <svg width="20" height="20" viewBox="0 0 22 22" fill="none"><path d="M2 6h18M2 11h18M2 16h10" stroke="#2C27B8" stroke-width="1.75" stroke-linecap="round"/><circle cx="17" cy="16" r="3" stroke="#2C27B8" stroke-width="1.75"/></svg>
+      </div>
+      <span class="service-tag" style="color:#2C27B8; background:rgba(44,39,184,0.07);">Hecho por mí</span>
+      <h3>Dashboard integral</h3>
+      <p>Tu sistema operativo completo: todos los departamentos conectados, procesos documentados y un panel de control con los indicadores clave de tu negocio.</p>
+    </div>
+
+    <div class="service-card reveal reveal-delay-3" tabindex="0">
+      <div class="service-ic" style="background: rgba(91,167,221,0.12);">
+        <svg width="20" height="20" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="8" r="3.5" stroke="#5BA7DD" stroke-width="1.75"/><path d="M4 19c0-3.866 3.134-7 7-7h0c3.866 0 7 3.134 7 7" stroke="#5BA7DD" stroke-width="1.75" stroke-linecap="round"/></svg>
+      </div>
+      <span class="service-tag" style="color:#5BA7DD; background:rgba(91,167,221,0.1);">Hecho contigo</span>
+      <h3>Mentoría 1:1</h3>
+      <p>3 sesiones en 1 mes. Construyes tu sistema conmigo, aprendes a usarlo y queda adaptado a tu negocio específico. Para consultores y freelancers que quieren ser dueños de su sistema.</p>
+    </div>
+
+    <div class="service-card reveal reveal-delay-4" tabindex="0">
+      <div class="service-ic" style="background: rgba(0,0,0,0.05);">
+        <svg width="20" height="20" viewBox="0 0 22 22" fill="none"><path d="M11 2v4M11 16v4M2 11h4M16 11h4" stroke="#000" stroke-width="1.75" stroke-linecap="round"/><circle cx="11" cy="11" r="4" stroke="#000" stroke-width="1.75"/></svg>
+      </div>
+      <span class="service-tag" style="color:rgba(0,0,0,0.5); background:rgba(0,0,0,0.06);">Soporte mensual</span>
+      <h3>Notion Care</h3>
+      <p>Tu workspace evoluciona con tu negocio. Nuevas páginas, ajustes, bases de datos y mejoras continuas cada mes, sin tener que aprender Notion.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── PROCESS ── -->
+<div id="metodo" class="process-section">
+  <div class="section">
+    <div class="section-header reveal">
+      <div class="overline">Cómo funciona</div>
+      <h2 class="section-title">Del caos disperso<br/>a un sistema que se ejecuta solo.</h2>
+      <p class="section-sub">Cada proyecto empieza con un diagnóstico real. Sin plantillas genéricas — construido para tu operación específica.</p>
+    </div>
+
+    <div class="steps-grid">
+      <div class="step-card reveal reveal-delay-1">
+        <div class="step-num">01</div>
+        <div class="step-ic" style="background:rgba(107,95,232,0.2);">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="#A98CFF" stroke-width="1.5"/><path d="M9 5.5v4l2.5 2" stroke="#A98CFF" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <h3>Diagnóstico (S0)</h3>
+        <p>Mapeamos tu operación, identificamos cuellos de botella y definimos exactamente qué construir. El diagnóstico es la ley — no se construye nada sin él.</p>
+      </div>
+
+      <div class="step-card reveal reveal-delay-2">
+        <div class="step-num">02</div>
+        <div class="step-ic" style="background:rgba(91,167,221,0.18);">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="14" height="14" rx="3" stroke="#7BC8F0" stroke-width="1.5"/><path d="M5 9h8M5 6h5" stroke="#7BC8F0" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <h3>Implementación (S1–S8)</h3>
+        <p>Construimos el sistema en 8 sesiones. Cada sesión tiene un entregable concreto — architectura, bases de datos relacionales, vistas por rol, dashboards y manuales.</p>
+      </div>
+
+      <div class="step-card reveal reveal-delay-3">
+        <div class="step-num">03</div>
+        <div class="step-ic" style="background:rgba(44,39,184,0.2);">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M5 9l3 3 5-5" stroke="#7B9CF0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="9" r="7" stroke="#7B9CF0" stroke-width="1.5"/></svg>
+        </div>
+        <h3>Entrega y soporte</h3>
+        <p>Documentación completa, capacitación al equipo y la opción de continuar con Notion Care. Tu equipo queda operando solo en 6 semanas.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── CASES COLUMNS ── -->
+<section id="resultados" style="padding: 96px 0 80px;">
+  <div style="max-width:1280px; margin:0 auto; padding:0 48px;">
+    <div class="section-header" style="margin-bottom:56px;">
+      <div class="overline">Casos de uso</div>
+      <h2 class="section-title">Sistemas reales,<br/>construidos para cada negocio.</h2>
+      <p class="section-sub">Cada empresa tiene su propia arquitectura. Aquí algunos de los sistemas operativos que hemos construido en Notion.</p>
+    </div>
+  </div>
+
+  <div class="cases-columns-wrap">
+
+    <!-- Column 1 — 22s -->
+    <div class="cases-col">
+      <div class="cases-col-inner dur-a">
+        <div class="case-card"><div class="case-img-wrap"><img src="Clientes/Bond%20Collective.png" alt="Bond Collective" loading="eager"/></div><div class="case-label"><span class="case-dot"></span><span class="case-name">Bond Collective</span></div></div>
+        <div class="case-card"><div class="case-img-wrap"><img src="Clientes/Faroo%20Legal.png" alt="Faroo Legal" loading="eager"/></div><div class="case-label"><span class="case-dot"></span><span class="case-name">Faroo Legal</span></div></div>
+        <div class="case-card"><div class="case-img-wrap"><img src="Clientes/Imporalia.png" alt="Imporalia" loading="eager"/></div><div class="case-label"><span class="case-dot"></span><span class="case-name">Imporalia</span></div></div>
+        <div class="case-card"><div class="case-img-wrap"><img src="Clientes/Travex.png" alt="Travex" loading="eager"/></div><div class="case-label"><span class="case-dot"></span><span class="case-name">Travex</span></div></div>
+        <!-- duplicate -->
+        <div class="case-card"><div class="case-img-wrap"><img src="Clientes/Bond%20Collective.png" alt="Bond Collective" loading="eager"/></div><div class="case-label"><span class="case-dot"></span><span class="case-name">Bond Collective</span></div></div>
+        <div class="case-card"><div class="case-img-wrap"><img src="Clientes/Faroo%20Legal.png" alt="Faroo Legal" loading="eager"/></div><div class="case-label"><span class="case-dot"></span><span class="case-name">Faroo Legal</span></div></div>
+        <div class="case-card"><div class="case-img-wrap"><img src="Clientes/Imporalia.png" alt="Imporalia" loading="eager"/></div><div class="case-label"><span class="case-dot"></span><span class="case-name">Imporalia</span></div></div>
+        <div class="case-card"><div class="case-img-wrap"><img src="Clientes/Travex.png" alt="Travex" loading="eager"/></div><div class="case-label"><span class="case-dot"></span><span class="case-name">Travex</span></div></div>
+      </div>
+    </div>
+
+    <!-- Column 2 — 28s (hidden on small screens) -->
+    <div class="cases-col" style="display:none;" id="col-mid">
+      <div class="cases-col-inner dur-b">
+        <div class="case-card"><div class="case-img-wrap"><img src="Clientes/Colombia%20Luxury%20Travel.png" alt="Colombia Luxury Travel" loading="eager"/></div><div class="case-label"><span class="case-dot"></span><span class="case-name">Colombia Luxury Travel</span></div></div>
+        <div class="case-card"><div class="case-img-wrap"><img src="Clientes/Grows.png" alt="Grows" loading="eager"/></div><div class="case-label"><span class="case-dot"></span><span class="case-name">Grows</span></div></div>
+        <div class="case-card"><div class="case-img-wrap"><img src="Clientes/Portal%20Cliente.png" alt="Portal Cliente" loading="eager"/></div><div class="case-label"><span class="case-dot"></span><span class="case-name">Portal Cliente</span></div></div>
+        <div class="case-card"><div class="case-img-wrap"><img src="Clientes/The%20Last%20Consulting.png" alt="The Last Consulting" loading="eager"/></div><div class="case-label"><span class="case-dot"></span><span class="case-name">The Last Consulting</span></div></div>
+        <!-- duplicate -->
+        <div class="case-card"><div class="case-img-wrap"><img src="Clientes/Colombia%20Luxury%20Travel.png" alt="Colombia Luxury Travel" loading="eager"/></div><div class="case-label"><span class="case-dot"></span><span class="case-name">Colombia Luxury Travel</span></div></div>
+        <div class="case-card"><div class="case-img-wrap"><img src="Clientes/Grows.png" alt="Grows" loading="eager"/></div><div class="case-label"><span class="case-dot"></span><span class="case-name">Grows</span></div></div>
+        <div class="case-card"><div class="case-img-wrap"><img src="Clientes/Portal%20Cliente.png" alt="Portal Cliente" loading="eager"/></div><div class="case-label"><span class="case-dot"></span><span class="case-name">Portal Cliente</span></div></div>
+        <div class="case-card"><div class="case-img-wrap"><img src="Clientes/The%20Last%20Consulting.png" alt="The Last Consulting" loading="eager"/></div><div class="case-label"><span class="case-dot"></span><span class="case-name">The Last Consulting</span></div></div>
+      </div>
+    </div>
+
+    <!-- Column 3 — 19s (hidden on small screens) -->
+    <div class="cases-col" style="display:none;" id="col-right">
+      <div class="cases-col-inner dur-c">
+        <div class="case-card"><div class="case-img-wrap"><img src="Clientes/Divizione.png" alt="Divizione" loading="eager"/></div><div class="case-label"><span class="case-dot"></span><span class="case-name">Divizione</span></div></div>
+        <div class="case-card"><div class="case-img-wrap"><img src="Clientes/Ecija.png" alt="Ecija" loading="eager"/></div><div class="case-label"><span class="case-dot"></span><span class="case-name">Ecija</span></div></div>
+        <div class="case-card"><div class="case-img-wrap"><img src="Clientes/Innovation%20Workshop.png" alt="Innovation Workshop" loading="eager"/></div><div class="case-label"><span class="case-dot"></span><span class="case-name">Innovation Workshop</span></div></div>
+        <div class="case-card"><div class="case-img-wrap"><img src="Clientes/Faroo%20Legal.png" alt="Faroo Legal" loading="eager"/></div><div class="case-label"><span class="case-dot"></span><span class="case-name">Faroo Legal</span></div></div>
+        <!-- duplicate -->
+        <div class="case-card"><div class="case-img-wrap"><img src="Clientes/Divizione.png" alt="Divizione" loading="eager"/></div><div class="case-label"><span class="case-dot"></span><span class="case-name">Divizione</span></div></div>
+        <div class="case-card"><div class="case-img-wrap"><img src="Clientes/Ecija.png" alt="Ecija" loading="eager"/></div><div class="case-label"><span class="case-dot"></span><span class="case-name">Ecija</span></div></div>
+        <div class="case-card"><div class="case-img-wrap"><img src="Clientes/Innovation%20Workshop.png" alt="Innovation Workshop" loading="eager"/></div><div class="case-label"><span class="case-dot"></span><span class="case-name">Innovation Workshop</span></div></div>
+        <div class="case-card"><div class="case-img-wrap"><img src="Clientes/Faroo%20Legal.png" alt="Faroo Legal" loading="eager"/></div><div class="case-label"><span class="case-dot"></span><span class="case-name">Faroo Legal</span></div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<div id="empezar" class="cta-section">
+  <div class="cta-box">
+    <div class="overline">Llamada gratuita de 30 min</div>
+    <h2>¿Lista para construir el sistema<br/>que tu equipo necesita?</h2>
+    <p>Agenda una llamada de diagnóstico gratuita para que tengamos un mapa claro de qué necesitas y cómo lo podemos arreglar.</p>
+    <a href="https://notionpartners.cal.com/sara-systechub/30min" target="_blank" rel="noopener" class="btn-cta-white">
+      Agendar mi llamada gratuita
+      <svg class="ic" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <div style="display:flex; align-items:center; gap:10px;">
+      <svg width="20" height="20" viewBox="0 0 200 200" fill="none">
+        <rect x="74" y="20" width="86" height="40" rx="8" fill="rgba(249,241,227,0.4)"/>
+        <rect x="40" y="32" width="40" height="72" rx="8" fill="rgba(249,241,227,0.4)"/>
+        <rect x="86" y="80" width="36" height="36" rx="6" fill="rgba(249,241,227,0.4)"/>
+        <rect x="128" y="92" width="34" height="56" rx="6" fill="rgba(249,241,227,0.4)"/>
+        <rect x="56" y="140" width="86" height="40" rx="8" fill="rgba(249,241,227,0.4)"/>
+      </svg>
+      <span style="font-size:14px; font-weight:500; color:rgba(249,241,227,0.35);">systec hub</span>
+    </div>
+    <span class="footer-copy">© 2025 SysteC Hub · Sara Castellanos · Consultora certificada Notion</span>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/saraainotionmake/" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
+      <a href="mailto:sara@systechub.com" class="footer-link">sara@systechub.com</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    });
+  });
+
+  // Scroll reveal
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  // Responsive columns
+  function updateCols() {
+    const mid = document.getElementById('col-mid');
+    const right = document.getElementById('col-right');
+    if (!mid || !right) return;
+    mid.style.display = window.innerWidth >= 768 ? 'flex' : 'none';
+    right.style.display = window.innerWidth >= 1024 ? 'flex' : 'none';
+  }
+  updateCols();
+  window.addEventListener('resize', updateCols);
+
+  // Counter animation
+  function animateCounter(el) {
+    const target = +el.dataset.target;
+    const suffix = el.dataset.suffix || '+';
+    const duration = 1400;
+    const start = performance.now();
+    const update = now => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.floor(eased * target) + (progress === 1 ? suffix : '');
+      if (progress < 1) requestAnimationFrame(update);
+    };
+    requestAnimationFrame(update);
+  }
+  const counterObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('[data-target]').forEach(animateCounter);
+        counterObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.stats-row').forEach(el => counterObserver.observe(el));
+</script>
+
+</body>
+</html>
