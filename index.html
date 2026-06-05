@@ -482,61 +482,7 @@ footer {
   .stat-item:nth-child(4) { border-top: 1px solid var(--hairline); border-right: none; }
 }
 
-/* ── RECURSOS GRATUITOS ── */
-.recursos-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-}
-.recurso-card {
-  background: #fff;
-  border: 1px solid var(--hairline);
-  border-radius: 16px;
-  padding: 32px;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  transition: border-color 200ms var(--ease), box-shadow 200ms var(--ease);
-}
-.recurso-card:hover {
-  border-color: rgba(107,95,232,0.35);
-  box-shadow: 0 4px 24px rgba(107,95,232,0.1);
-}
-.recurso-tag {
-  font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
-  text-transform: uppercase; color: var(--violeta);
-  display: flex; align-items: center; gap: 6px;
-  margin-bottom: 16px;
-}
-.recurso-tag::before {
-  content: ""; width: 5px; height: 5px;
-  border-radius: 50%; background: var(--violeta); flex-shrink: 0;
-}
-.recurso-nombre {
-  font-size: 16px; font-weight: 700; color: var(--negro);
-  letter-spacing: -0.015em; line-height: 1.3;
-  margin: 0 0 12px;
-}
-.recurso-desc {
-  font-size: 14px; line-height: 1.65; color: rgba(0,0,0,0.55);
-  margin: 0 0 24px; flex: 1;
-}
-.recurso-cta {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-size: 13px; font-weight: 600;
-  color: var(--violeta); text-decoration: none;
-  padding-top: 20px;
-  border-top: 1px solid var(--hairline);
-  margin-top: auto;
-  transition: color 150ms var(--ease), gap 150ms var(--ease);
-}
-.recurso-cta:hover { color: var(--azul-prof); gap: 12px; }
-@media (max-width: 900px) {
-  .recursos-grid { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 600px) {
-  .recursos-grid { grid-template-columns: 1fr; }
-}
+
 </style>
 </head>
 <body>
@@ -559,7 +505,7 @@ footer {
       <a class="nav-link" href="#servicios">Servicios</a>
       <a class="nav-link" href="#metodo">Método</a>
       <a class="nav-link" href="#resultados">Resultados</a>
-      <a class="nav-link" href="#recursos">Recursos</a>
+      <a class="nav-link" href="https://systec-hub.kit.com/18ec3f65a6" target="_blank" rel="noopener">Newsletter</a>
       <a class="nav-cta" href="#empezar">
         Agenda tu llamada
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
@@ -872,101 +818,6 @@ footer {
 </section>
 
 <!-- ── RECURSOS GRATUITOS ── -->
-<!-- Kit migration: cuando el formulario de Kit esté creado, reemplazar el href
-     de cada .recurso-cta con la URL del formulario en Kit:
-     https://[creator].ck.page/[form-id]
-     Cada comentario <!-- KIT_FORM: [slug] --> marca el formulario correspondiente. -->
-<section id="recursos" style="padding: 96px 0; background: #fff;">
-  <div class="section" style="padding-top: 0; padding-bottom: 0;">
-    <div class="section-header reveal">
-      <div class="overline">Recursos gratuitos</div>
-      <h2 class="section-title">Plantillas y guías<br/>para empezar hoy.</h2>
-      <p class="section-sub">Descarga el recurso que más se ajusta a tu momento. Duplícalo en Notion y ponlo a trabajar antes de que hablemos.</p>
-    </div>
-
-    <div class="recursos-grid">
-
-      <!-- KIT_FORM: skill-propuestas-comerciales-en-notion -->
-      <div class="recurso-card reveal reveal-delay-1">
-        <div class="recurso-tag">Plantilla Notion</div>
-        <p class="recurso-nombre">Skill Propuestas Comerciales en Notion</p>
-        <p class="recurso-desc">Crea y envía propuestas directamente desde Notion, sin salir del sistema operativo de tu negocio.</p>
-        <a href="https://saracatcas.gumroad.com/l/hqttk" target="_blank" rel="noopener" class="recurso-cta">
-          Descarga gratis
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-        </a>
-      </div>
-
-      <!-- KIT_FORM: finanzas-empresariales-en-notion -->
-      <div class="recurso-card reveal reveal-delay-2">
-        <div class="recurso-tag">Plantilla Notion</div>
-        <p class="recurso-nombre">Finanzas Empresariales en Notion</p>
-        <p class="recurso-desc">Visualiza ingresos, gastos y rentabilidad en un panel diseñado para empresas de servicios — sin Excel.</p>
-        <a href="https://saracatcas.gumroad.com/l/ktgnoep" target="_blank" rel="noopener" class="recurso-cta">
-          Descarga gratis
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-        </a>
-      </div>
-
-      <!-- KIT_FORM: calculadora-de-pricing-para-servicios -->
-      <div class="recurso-card reveal reveal-delay-3">
-        <div class="recurso-tag">Calculadora</div>
-        <p class="recurso-nombre">Calculadora de Pricing para Servicios</p>
-        <p class="recurso-desc">Define tu precio con fórmulas reales. Sin adivinar, sin subvalorar tu trabajo.</p>
-        <a href="https://saracatcas.gumroad.com/l/ngcoq" target="_blank" rel="noopener" class="recurso-cta">
-          Descarga gratis
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-        </a>
-      </div>
-
-      <!-- KIT_FORM: guia-custom-agents-de-notion -->
-      <div class="recurso-card reveal reveal-delay-1">
-        <div class="recurso-tag">Guía</div>
-        <p class="recurso-nombre">Guía: Custom Agents de Notion</p>
-        <p class="recurso-desc">Configura agentes de IA dentro de Notion para automatizar tareas repetitivas sin herramientas externas.</p>
-        <a href="https://saracatcas.gumroad.com/l/ouolh" target="_blank" rel="noopener" class="recurso-cta">
-          Descarga gratis
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-        </a>
-      </div>
-
-      <!-- KIT_FORM: crm-clientes-propuestas-y-tareas-en-notion -->
-      <div class="recurso-card reveal reveal-delay-2">
-        <div class="recurso-tag">Plantilla Notion</div>
-        <p class="recurso-nombre">CRM en Notion — Clientes, Propuestas y Tareas</p>
-        <p class="recurso-desc">Gestiona clientes, propuestas activas y tareas desde un solo sistema sin depender de herramientas externas.</p>
-        <a href="https://saracatcas.gumroad.com/l/mrcaja" target="_blank" rel="noopener" class="recurso-cta">
-          Descarga gratis
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-        </a>
-      </div>
-
-      <!-- KIT_FORM: guia-agente-personalizado-de-notion -->
-      <div class="recurso-card reveal reveal-delay-3">
-        <div class="recurso-tag">Guía</div>
-        <p class="recurso-nombre">Guía: Agente Personalizado de Notion</p>
-        <p class="recurso-desc">Activa y configura el asistente de IA nativo de Notion en 30 minutos con instrucciones paso a paso.</p>
-        <a href="https://saracatcas.gumroad.com/l/pvvtyp" target="_blank" rel="noopener" class="recurso-cta">
-          Descarga gratis
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-        </a>
-      </div>
-
-      <!-- KIT_FORM: crm-clientes-tareas-y-oportunidades-en-notion -->
-      <div class="recurso-card reveal reveal-delay-1">
-        <div class="recurso-tag">Plantilla Notion</div>
-        <p class="recurso-nombre">CRM en Notion — Clientes, Tareas y Oportunidades</p>
-        <p class="recurso-desc">Lleva el seguimiento de oportunidades comerciales y tareas de clientes sin ninguna fricción operativa.</p>
-        <a href="https://saracatcas.gumroad.com/l/znvvs" target="_blank" rel="noopener" class="recurso-cta">
-          Descarga gratis
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-        </a>
-      </div>
-
-    </div>
-  </div>
-</section>
-
 <!-- ── CTA ── -->
 <div id="empezar" class="cta-section">
   <div class="cta-box">
